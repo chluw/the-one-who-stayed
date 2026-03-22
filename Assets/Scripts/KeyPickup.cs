@@ -2,12 +2,33 @@ using UnityEngine;
 
 public class KeyPickup : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
+    public string keyID; // unique key name (ex: "BasementKey")
+
+    private bool playerInRange = false;
+
+    void Update()
     {
-        if (other.CompareTag("Player"))
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Key Collected!");
+            InventoryManager.Instance.AddKey(keyID);
+            Debug.Log("Picked up key: " + keyID);
             Destroy(gameObject);
         }
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("E pressed near key");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            playerInRange = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            playerInRange = false;
     }
 }
