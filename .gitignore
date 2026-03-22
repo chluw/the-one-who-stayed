@@ -8,13 +8,12 @@ UserSettings/
 *.csproj
 *.unityproj
 *.sln
-*.suo
-*.tmp
 *.user
 *.userprefs
 
-.vscode/
-.idea/
+*.pidb
+*.booproj
+*.svd
 
 .DS_Store
 Thumbs.db
